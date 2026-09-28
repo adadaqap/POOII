@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Padre {
+private:
+    void secretoFinanciero() {
+        cout << "Método secreto 1: Manejando cuentas bancarias ocultas del padre." << endl;
+    }
+    void secretoPersonal() {
+        cout << "Método secreto 2: Accediendo a bitácoras personales del padre." << endl;
+    }
+public:
+    void mostrarMensajePublico() {
+        cout << "Método público: Hola desde la clase Padre." << endl;
+    }
+};
+class Hija : public Padre {
+public:
+    void intentarAccesoHija() {
+        cout << "\nINTENTO DE ACCESO DESDE LA CLASE HIJA" << endl;
+        cout << "Prueba 1: No se puede invocar 'secretoFinanciero()' desde la hija." << endl;
+        cout << "Prueba 2: No se puede invocar 'secretoPersonal()' desde la hija." << endl;
+    }
+};
+int main() {
+    Hija objetoHija;
+    objetoHija.mostrarMensajePublico();
+    objetoHija.intentarAccesoHija();
+    return 0;
+}
