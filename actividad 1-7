@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class EstudianteConEncapsulamiento {
+private:
+    string nombre;
+    int edad;
+    double promedio;
+public:
+    EstudianteConEncapsulamiento(string nom, int ed, double prom) {
+        setNombre(nom);
+        setEdad(ed);
+        setPromedio(prom);
+    }
+    void setNombre(string nom) {
+        if (!nom.empty()) {
+            nombre = nom;
+        } else {
+            nombre = "Sin Nombre";
+        }
+    }
+    void setEdad(int ed) {
+        if (ed >= 0 && ed <= 120) {
+            edad = ed;
+        } else {
+            cout << "[ALERTA] Edad invalida (" << ed << "). No se realizo el cambio." << endl;
+        }
+    }
+    void setPromedio(double prom) {
+        if (prom >= 0.0 && prom <= 20.0) {
+            promedio = prom;
+        } else {
+            cout << "[ALERTA] Promedio invalido (" << prom << "). No se realizo el cambio." << endl;
+        }
+    }
+    string getNombre() const {
+        return nombre;
+    }
+    int getEdad() const {
+        return edad;
+    }
+    double getPromedio() const {
+        return promedio;
+    }
+};
+int main() {
+    cout << "DEMOSTRACION CON ENCAPSULAMIENTO" << endl;
+    EstudianteConEncapsulamiento alumno("Maria Lopez", 19, 16.5);
+    cout << "Datos iniciales del estudiante:" << endl;
+    cout << "Nombre:   " << alumno.getNombre() << endl;
+    cout << "Edad:     " << alumno.getEdad() << " años" << endl;
+    cout << "Promedio: " << alumno.getPromedio() << endl;
+    cout << "\nModificando valores de forma controlada:" << endl;
+    alumno.setEdad(20);
+    alumno.setPromedio(18.0);
+    cout << "Datos despues de la modificacion valida:" << endl;
+    cout << "Edad actual:   " << alumno.getEdad() << endl;
+    cout << "Promedio actual: " << alumno.getPromedio() << endl;
+    cout << "\nIntentando asignar datos erroneos" << endl;
+    alumno.setEdad(-500);
+    alumno.setPromedio(25.0);
+    cout << "\nDatos finales tras intentos invalidos (se mantienen intactos):" << endl;
+    cout << "Edad:     " << alumno.getEdad() << endl;
+    cout << "Promedio: " << alumno.getPromedio() << endl;
+    return 0;
+}
