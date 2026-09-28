@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class GestorDeVentas {
+public:
+    double calcularTotalConImpuestos(double subtotal, string pais) {
+        double impuesto = (pais == "ES") ? 0.21 : 0.15;
+        return subtotal + (subtotal * impuesto);
+    }
+    void guardarEnBaseDeDatos(int pedidoId) {
+        cout << "[Base de Datos] Insertando pedido #" << pedidoId << " en la tabla principal..." << endl;
+    }
+    bool procesarTarjetaCredito(string numeroTarjeta, double monto) {
+        cout << "[Pasarela de Pagos] Cobrando $" << monto << " a la tarjeta " << numeroTarjeta << "..." << endl;
+        return true;
+    }
+    void generarPdfFactura(int pedidoId) {
+        cout << "[Generador PDF] Creando factura_" << pedidoId << ".pdf en el servidor..." << endl;
+    }
+    void enviarCorreoConfirmacion(string emailCliente) {
+        cout << "[Servidor SMTP] Enviando correo de confirmación a " << emailCliente << "..." << endl;
+    }
+};
+int main() {
+    cout << "SIMULACION DE UNA GOD CLASS" << endl;
+    GestorDeVentas sistemaMonolitico;
+    double total = sistemaMonolitico.calcularTotalConImpuestos(150.0, "ES");
+    cout << "Total calculado: $" << total << endl;
+    sistemaMonolitico.procesarTarjetaCredito("4000-1234-5678-9010", total);
+    sistemaMonolitico.guardarEnBaseDeDatos(502);
+    sistemaMonolitico.generarPdfFactura(502);
+    sistemaMonolitico.enviarCorreoConfirmacion("usuario@ejemplo.com");
+    return 0;
+}
