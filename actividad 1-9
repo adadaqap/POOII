@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class CalculadoraImpuestos {
+public:
+    double calcularTotalConImpuestos(double subtotal, const string& pais) {
+        double impuesto = (pais == "ES") ? 0.21 : 0.15;
+        return subtotal + (subtotal * impuesto);
+    }
+};
+class RepositorioPedido {
+public:
+    void guardarEnBaseDeDatos(int pedidoId) {
+        cout << "[Base de Datos] Insertando pedido #" << pedidoId << " en la tabla principal..." << endl;
+    }
+};
+class PasarelaDePagos {
+public:
+    bool procesarTarjetaCredito(const string& numeroTarjeta, double monto) {
+        cout << "[Pasarela de Pagos] Cobrando $" << monto << " a la tarjeta " << numeroTarjeta << "..." << endl;
+        return true;
+    }
+};
+class GeneradorFactura {
+public:
+    void generarPdfFactura(int pedidoId) {
+        cout << "[Generador PDF] Creando factura_" << pedidoId << ".pdf en el servidor..." << endl;
+    }
+};
+class ServicioNotificacion {
+public:
+    void enviarCorreoConfirmacion(const string& emailCliente) {
+        cout << "[Servidor SMTP] Enviando correo de confirmación a " << emailCliente << "..." << endl;
+    }
+};
+int main() {
+    cout << "SIMULACION CON PRINCIPIO SRP" << endl;
+    CalculadoraImpuestos calculadora;
+    PasarelaDePagos pasarela;
+    RepositorioPedido repositorio;
+    GeneradorFactura generadorPdf;
+    ServicioNotificacion notificador;
+    double total = calculadora.calcularTotalConImpuestos(150.0, "ES");
+    cout << "Total calculado: $" << total << endl;
+    pasarela.procesarTarjetaCredito("4000-1234-5678-9010", total);
+    repositorio.guardarEnBaseDeDatos(502);
+    generadorPdf.generarPdfFactura(502);
+    notificador.enviarCorreoConfirmacion("usuario@ejemplo.com");
+    return 0;
+}
