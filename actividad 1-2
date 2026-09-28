@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+class Empleado {
+protected:
+    string nombre;
+    double salarioBase;
+public:
+    Empleado(string nom, double salario) : nombre(nom), salarioBase(salario) {}
+    virtual ~Empleado() {}
+    virtual void calcularPago() {
+        cout << "Empleado: " << nombre << " | Pago base: $" << salarioBase << endl;
+    }
+};
+class Gerente : public Empleado {
+private:
+    double bono;
+public:
+    Gerente(string nom, double salario, double b) : Empleado(nom, salario), bono(b) {}
+    void calcularPago() override {
+        double pagoTotal = salarioBase + bono;
+        cout << "Gerente: " << nombre << " | Pago Total (Salario + Bono): $" << pagoTotal << endl;
+    }
+};
+class Desarrollador : public Empleado {
+private:
+    int lineasCodigoPorDia;
+public:
+    Desarrollador(string nom, double salario, int lineas) : Empleado(nom, salario), lineasCodigoPorDia(lineas) {}
+    void calcularPago() override {
+        double pagoTotal = salarioBase + (lineasCodigoPorDia * 0.5);
+        cout << "Desarrollador: " << nombre << " | Pago Total (Salario + Incentivo): $" << pagoTotal << endl;
+    }
+};
+int main() {
+    vector<Empleado*> nomina;
+    nomina.push_back(new Gerente("Ana Gomez", 4000.0, 1200.0));
+    nomina.push_back(new Desarrollador("Carlos Ruiz", 3000.0, 800));
+    nomina.push_back(new Gerente("Sofia Martinez", 4500.0, 1500.0));
+    cout << "REPORTE DE NOMINA\n";
+    for (size_t i = 0; i < nomina.size(); ++i) {
+        nomina[i]->calcularPago();
+    }
+    for (size_t i = 0; i < nomina.size(); ++i) {
+        delete nomina[i];
+    }
+    nomina.clear();
+    return 0;
+}
