@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Recurso {
+private:
+    string nombre;
+    int* datos;
+public:
+    Recurso(string nom) {
+        nombre = nom;
+        datos = new int[100];
+        cout << "[CONSTRUCTOR] Recurso '" << nombre << "' creado y memoria asignada." << endl;
+    }
+    ~Recurso() {
+        delete[] datos;
+        cout << "[DESTRUCTOR] Recurso '" << nombre << "' destruido y memoria liberada." << endl;
+    }
+    void usarRecurso() {
+        cout << "-> Ejecutando operaciones con el recurso: " << nombre << endl;
+    }
+};
+int main() {
+    cout << "INICIO DEL PROGRAMA" << endl;
+    Recurso* miRecurso = new Recurso("ConexionServidor");
+    miRecurso->usarRecurso();
+    cout << "\nLiberando el objeto explícitamente con 'delete':" << endl;
+    delete miRecurso; 
+    cout << "\nFIN DEL PROGRAMA" << endl;
+    return 0;
+}
