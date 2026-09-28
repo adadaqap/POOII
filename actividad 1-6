@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class EstudianteSinEncapsulamiento {
+public:
+    string nombre;
+    int edad;
+    double promedio;
+};
+int main() {
+    cout << "DEMOSTRACION SIN ENCAPSULAMIENTO" << endl;
+    EstudianteSinEncapsulamiento alumno;
+    alumno.nombre = "Carlos Perez";
+    alumno.edad = 20;
+    alumno.promedio = 15.5;
+    cout << "Datos iniciales del estudiante:" << endl;
+    cout << "Nombre:   " << alumno.nombre << endl;
+    cout << "Edad:     " << alumno.edad << " años" << endl;
+    cout << "Promedio: " << alumno.promedio << endl;
+    cout << "\nModificando valores directamente" << endl;
+    alumno.edad = -500;
+    alumno.promedio = 25.0;
+    cout << "Datos despues de la modificacion directa:" << endl;
+    cout << "Edad (invalida):   " << alumno.edad << endl;
+    cout << "Promedio (invalido): " << alumno.promedio << endl;
+    return 0;
+}
