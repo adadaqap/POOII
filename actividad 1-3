@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Libro {
+private:
+    string titulo;
+    string autor;
+    int paginas;
+public:
+    Libro() {
+        titulo = "Sin titulo";
+        autor = "Autor desconocido";
+        paginas = 0;
+    }
+    Libro(string t, string a) {
+        titulo = t;
+        autor = a;
+        paginas = 150;
+    }
+    Libro(string t, string a, int p) {
+        titulo = t;
+        autor = a;
+        paginas = p;
+    }
+    void mostrarInformacion() {
+        cout << "Libro: " << titulo << " | Autor: " << autor << " | Paginas: " << paginas << endl;
+    }
+};
+int main() {
+    Libro libro1;
+    Libro libro2("La hojarasca", "Gabriel Garcia Marquez");
+    Libro libro3("Don Quijote de la Mancha", "Miguel de Cervantes", 863);
+    cout << "CATALOGO DE LIBROS" << endl;
+    libro1.mostrarInformacion();
+    libro2.mostrarInformacion();
+    libro3.mostrarInformacion();
+    return 0;
+}
