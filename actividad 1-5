@@ -1,30 +1,37 @@
 #include <iostream>
-#include <string>
 using namespace std;
+// Clase padre
 class Padre {
 private:
-    void secretoFinanciero() {
-        cout << "Método secreto 1: Manejando cuentas bancarias ocultas del padre." << endl;
+    void metodoPrivado1() {
+        cout << "Metodo privado 1 de la clase Padre" << endl;
     }
-    void secretoPersonal() {
-        cout << "Método secreto 2: Accediendo a bitácoras personales del padre." << endl;
+    void metodoPrivado2() {
+        cout << "Metodo privado 2 de la clase Padre" << endl;
     }
 public:
-    void mostrarMensajePublico() {
-        cout << "Método público: Hola desde la clase Padre." << endl;
+    void mostrar() {
+        cout << "Metodo publico de la clase Padre" << endl;
     }
 };
+// Clase hija
 class Hija : public Padre {
 public:
-    void intentarAccesoHija() {
-        cout << "\nINTENTO DE ACCESO DESDE LA CLASE HIJA" << endl;
-        cout << "Prueba 1: No se puede invocar 'secretoFinanciero()' desde la hija." << endl;
-        cout << "Prueba 2: No se puede invocar 'secretoPersonal()' desde la hija." << endl;
+    void probarAcceso() {
+        // Estos métodos NO se pueden utilizar directamente
+        // porque son privados en la clase Padre.
+        // metodoPrivado1(); // ERROR
+        // metodoPrivado2(); // ERROR
+        cout << "La clase Hija no puede acceder directamente ";
+        cout << "a los metodos privados del Padre." << endl;
+        // Este método sí se puede utilizar
+        mostrar();
     }
 };
 int main() {
-    Hija objetoHija;
-    objetoHija.mostrarMensajePublico();
-    objetoHija.intentarAccesoHija();
+    Hija objeto;
+    cout << "PRUEBA DE ACCESO" << endl;
+    cout << "-----------------" << endl;
+    objeto.probarAcceso();
     return 0;
 }
