@@ -1,45 +1,19 @@
 #include <iostream>
-#include <string>
-using namespace std;
-class DispositivoElectronico {
-public:
-    virtual void encender() = 0;
-    virtual void apagar() = 0;
-    virtual ~DispositivoElectronico() {}
-};
-class Television : public DispositivoElectronico {
+using namespace std
+class Persona {
 private:
-    int volumen;
-    int canal;
+    string nombre;  // Encapsulado: no se puede acceder directamente
 public:
-    Television() : volumen(10), canal(1) {}
-    void encender() override {
-        cout << "La televisión está encendida.\n";
+    void setNombre(string n) {
+        nombre = n;
     }
-    void apagar() override {
-        cout << "La televisión se ha apagado.\n";
-    }
-    void cambiarVolumen(int nuevoVolumen) {
-        if (nuevoVolumen >= 0 && nuevoVolumen <= 100) {
-            volumen = nuevoVolumen;
-            cout << "Volumen ajustado a: " << volumen << "\n";
-        } else {
-            cout << "Error: Nivel de volumen fuera de rango.\n";
-        }
-    }
-    int obtenerVolumen() const {
-        return volumen;
+    void mostrarNombre() {
+        cout << "Nombre: " << nombre << endl;
     }
 };
 int main() {
-    DispositivoElectronico* miTv = new Television();
-    miTv->encender();
-    Television* tvConcreta = dynamic_cast<Television*>(miTv);
-    if (tvConcreta) {
-        tvConcreta->cambiarVolumen(20);
-        cout << "Volumen actual: " << tvConcreta->obtenerVolumen() << "\n";
-    }
-    miTv->apagar();
-    delete miTv;
+    Persona p;
+    p.setNombre("Carlos");
+    p.mostrarNombre();
     return 0;
 }
