@@ -1,38 +1,35 @@
 #include <iostream>
-#include <string>
 using namespace std;
-class Libro {
+class Estudiante {
 private:
-    string titulo;
-    string autor;
-    int paginas;
+    string nombre;
+    int edad;
 public:
-    Libro() {
-        titulo = "Sin titulo";
-        autor = "Autor desconocido";
-        paginas = 0;
+    // Constructor por defecto
+    Estudiante() {
+        nombre = "Sin nombre";
+        edad = 0;
     }
-    Libro(string t, string a) {
-        titulo = t;
-        autor = a;
-        paginas = 150;
+    // Constructor con un parámetro
+    Estudiante(string n) {
+        nombre = n;
+        edad = 18;
     }
-    Libro(string t, string a, int p) {
-        titulo = t;
-        autor = a;
-        paginas = p;
+    // Constructor con dos parámetros
+    Estudiante(string n, int e) {
+        nombre = n;
+        edad = e;
     }
-    void mostrarInformacion() {
-        cout << "Libro: " << titulo << " | Autor: " << autor << " | Paginas: " << paginas << endl;
+    void mostrar() {
+        cout << "Nombre: " << nombre << ", Edad: " << edad << endl;
     }
 };
 int main() {
-    Libro libro1;
-    Libro libro2("La hojarasca", "Gabriel Garcia Marquez");
-    Libro libro3("Don Quijote de la Mancha", "Miguel de Cervantes", 863);
-    cout << "CATALOGO DE LIBROS" << endl;
-    libro1.mostrarInformacion();
-    libro2.mostrarInformacion();
-    libro3.mostrarInformacion();
+    Estudiante e1;              // Constructor por defecto
+    Estudiante e2("Juan");      // Constructor con un parámetro
+    Estudiante e3("Pedro", 20); // Constructor con dos parámetros
+    e1.mostrar();
+    e2.mostrar();
+    e3.mostrar();
     return 0;
 }
