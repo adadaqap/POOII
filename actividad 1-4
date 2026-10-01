@@ -1,30 +1,19 @@
 #include <iostream>
-#include <string>
 using namespace std;
-class Recurso {
-private:
-    string nombre;
-    int* datos;
+class Persona {
 public:
-    Recurso(string nom) {
-        nombre = nom;
-        datos = new int[100];
-        cout << "[CONSTRUCTOR] Recurso '" << nombre << "' creado y memoria asignada." << endl;
+    // Constructor
+    Persona() {
+        cout << "Constructor ejecutado" << endl;
     }
-    ~Recurso() {
-        delete[] datos;
-        cout << "[DESTRUCTOR] Recurso '" << nombre << "' destruido y memoria liberada." << endl;
-    }
-    void usarRecurso() {
-        cout << "-> Ejecutando operaciones con el recurso: " << nombre << endl;
+    // Destructor
+    ~Persona() {
+        cout << "Destructor ejecutado" << endl;
     }
 };
 int main() {
-    cout << "INICIO DEL PROGRAMA" << endl;
-    Recurso* miRecurso = new Recurso("ConexionServidor");
-    miRecurso->usarRecurso();
-    cout << "\nLiberando el objeto explícitamente con 'delete':" << endl;
-    delete miRecurso; 
-    cout << "\nFIN DEL PROGRAMA" << endl;
+    Persona p;
+    cout << "El objeto esta funcionando" << endl;
+    p.~Persona();  // Llamada explícita al destructor
     return 0;
 }
