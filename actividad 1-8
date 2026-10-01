@@ -1,34 +1,36 @@
 #include <iostream>
 #include <string>
 using namespace std;
-class GestorDeVentas {
+class SistemaUniversidad {
 public:
-    double calcularTotalConImpuestos(double subtotal, string pais) {
-        double impuesto = (pais == "ES") ? 0.21 : 0.15;
-        return subtotal + (subtotal * impuesto);
+    // Responsabilidad 1: registrar estudiante
+    void registrarEstudiante(string nombre) {
+        cout << "Estudiante registrado: " << nombre << endl;
     }
-    void guardarEnBaseDeDatos(int pedidoId) {
-        cout << "[Base de Datos] Insertando pedido #" << pedidoId << " en la tabla principal..." << endl;
+    // Responsabilidad 2: calcular nota
+    void calcularNota(double nota1, double nota2) {
+        double promedio = (nota1 + nota2) / 2;
+        cout << "Promedio: " << promedio << endl;
     }
-    bool procesarTarjetaCredito(string numeroTarjeta, double monto) {
-        cout << "[Pasarela de Pagos] Cobrando $" << monto << " a la tarjeta " << numeroTarjeta << "..." << endl;
-        return true;
+    // Responsabilidad 3: guardar datos
+    void guardarDatos() {
+        cout << "Guardando datos del estudiante..." << endl;
     }
-    void generarPdfFactura(int pedidoId) {
-        cout << "[Generador PDF] Creando factura_" << pedidoId << ".pdf en el servidor..." << endl;
+    // Responsabilidad 4: generar reporte
+    void generarReporte() {
+        cout << "Generando reporte del estudiante..." << endl;
     }
-    void enviarCorreoConfirmacion(string emailCliente) {
-        cout << "[Servidor SMTP] Enviando correo de confirmación a " << emailCliente << "..." << endl;
+    // Responsabilidad 5: enviar correo
+    void enviarCorreo() {
+        cout << "Enviando correo al estudiante..." << endl;
     }
 };
 int main() {
-    cout << "SIMULACION DE UNA GOD CLASS" << endl;
-    GestorDeVentas sistemaMonolitico;
-    double total = sistemaMonolitico.calcularTotalConImpuestos(150.0, "ES");
-    cout << "Total calculado: $" << total << endl;
-    sistemaMonolitico.procesarTarjetaCredito("4000-1234-5678-9010", total);
-    sistemaMonolitico.guardarEnBaseDeDatos(502);
-    sistemaMonolitico.generarPdfFactura(502);
-    sistemaMonolitico.enviarCorreoConfirmacion("usuario@ejemplo.com");
+    SistemaUniversidad sistema;
+    sistema.registrarEstudiante("Anthony");
+    sistema.calcularNota(15, 18);
+    sistema.guardarDatos();
+    sistema.generarReporte();
+    sistema.enviarCorreo();
     return 0;
 }
